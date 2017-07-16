@@ -28,6 +28,8 @@ db.on('error', (err) => {
 // Init App
 const app = express();
 
+app.set('port', (process.env.PORT || 5000));
+
 // Body Parser Middleware
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -110,6 +112,6 @@ app.use('/articles', articles);
 app.use('/users', users);
 
 // Start Server
-app.listen(3000, () => {
-  console.log('Server start on port 3000...');
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
